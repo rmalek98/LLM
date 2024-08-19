@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" x-data="{ darkMode: false }" :class="{ 'dark': darkMode }" x-init="
+    darkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Chatbot</title>
+    <!-- Tailwind CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* Custom dark mode styling */
+        .dark .bg-white {
+            background-color: #2a2b32;
+        }
+        .dark .text-gray-500 {
+            color: #d1d5db;
+        }
+        .dark .bg-gray-100 {
+            background-color: #1e1f24;
+        }
+        .dark .bg-gray-200 {
+            background-color: #343541;
+        }
+        .dark .text-gray-800 {
+            color: #e8eaed;
+        }
+        .dark .bg-gray-800 {
+            background-color: #202123;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 dark:bg-gray-800 font-sans leading-normal tracking-normal">
+    <div class="flex flex-col h-screen">
+        <!-- Header -->
+        <header class="bg-white dark:bg-gray-900 shadow py-4 px-6 flex justify-between items-center">
+            <div class="max-w-7xl mx-auto flex items-center">
+                <h1 class="text-xl font-bold dark:text-white">Document Chatbot</h1>
+            </div>
+            <!-- Dark Mode Toggle -->
+            <button @click="darkMode = !darkMode" class="focus:outline-none">
+                <svg x-show="!darkMode" class="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v2m0 14v2m8-8h-2m-14 0H3m15.364-6.364l-1.414 1.414m0 8.486l-1.414-1.414M8.05 8.05l-1.414-1.414m8.485 8.485l-1.414 1.414M21 12a9 9 0 11-9-9 9 9 0 019 9z"></path></svg>
+                <svg x-show="darkMode" class="w-6 h-6 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v2m0 14v2m8-8h-2m-14 0H3m15.364-6.364l-1.414 1.414m0 8.486l-1.414-1.414M8.05 8.05l-1.414-1.414m8.485 8.485l-1.414 1.414M21 12a9 9 0 11-9-9 9 9 0 019 9z"></path></svg>
+            </button>
+        </header>
+
+        <!-- Main Content -->
+        <main class="flex-grow overflow-auto p-6">
+            <div class="max-w-3xl mx-auto">
+                <div id="chatMessages" class="space-y-4">
+                    <!-- Chat messages will appear here -->
+                </div>
+            </div>
+        </main>
+
+        <!-- Chat Input Area -->
+        <footer class="bg-white dark:bg-gray-900 shadow p-4">
+            <div class="max-w-3xl mx-auto flex">
+                <input type="text" id="chatInput" class="flex-grow border border-gray-300 dark:border-gray-700 rounded-l px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Ask a question or make a request...">
+                <button id="sendBtn" class="bg-blue-500 hover:bg-blue-600 text-white rounded-r px-4 py-2 ml-2">Send</button>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Alpine.js for lightweight interactivity -->
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.7.1/dist/cdn.min.js"></script>
+    <script src="{{ url_for('static', filename='js/chatbot.js') }}"></script>
+</body>
+</html>
