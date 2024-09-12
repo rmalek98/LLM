@@ -12,7 +12,6 @@ def ask():
     data = request.json
     question = data.get('question')
     
-    # Assuming no previous context for simplicity (you can add context handling if needed)
     context = ""
     
     # Call the after_rag_chain function and get the result
