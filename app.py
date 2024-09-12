@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, jsonify
-from src.main import after_rag_chain  # This should work now
+from src.main import after_rag_chain  
 
 app = Flask(__name__)
 
