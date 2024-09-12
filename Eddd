@@ -1,0 +1,24 @@
+from flask import Flask, render_template, request, jsonify
+from src.main import after_rag_chain  # Import the function from main.py
+
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return render_template('index.html')
+
+@app.route('/ask', methods=['POST'])
+def ask():
+    data = request.json
+    question = data.get('question')
+    
+    # Assuming no previous context for simplicity (you can add context handling if needed)
+    context = ""
+    
+    # Call the after_rag_chain function and get the result
+    answer = after_rag_chain(question, context)
+    
+    return jsonify({'answer': answer})
+
+if __name__ == '__main__':
+    app.run(debug=True, port=5001)  
